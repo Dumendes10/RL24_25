@@ -1,4 +1,0 @@
-gymnasium[atari]
-torch
-numpy
-matplotlib

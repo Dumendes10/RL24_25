@@ -21,7 +21,7 @@ def preprocess(obs):
 def moving_average(data, window=10):
     return np.convolve(data, np.ones(window) / window, mode="valid")
 
-def train_dqn(episodes=500, batch_size=32):
+def train_dqn(episodes=200, batch_size=64):
     env = gym.make("ALE/Bowling-v5", render_mode="rgb_array")
     obs, _ = env.reset()
     state = preprocess(obs)
@@ -34,13 +34,13 @@ def train_dqn(episodes=500, batch_size=32):
     target_net.eval()
 
     optimizer = optim.Adam(policy_net.parameters(), lr=1e-4)
-    buffer = ReplayBuffer(10000)
+    buffer = ReplayBuffer(50000)
 
     gamma = 0.99
     epsilon = 1.0
     epsilon_min = 0.05
     epsilon_decay = 0.995
-    sync_target_steps = 1000
+    sync_target_steps = 500
     total_steps = 0
     rewards = []
 
@@ -112,3 +112,7 @@ def train_dqn(episodes=500, batch_size=32):
     plt.tight_layout()
     plt.savefig("Graphics/reward_plot_DQN.png")
     plt.show()
+    
+        
+    os.makedirs("results", exist_ok=True)
+    np.save("results/rewards_dqn.npy", rewards)

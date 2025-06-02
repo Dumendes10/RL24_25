@@ -24,13 +24,14 @@ if __name__ == "__main__":
         option = main()
 
         if option == "1":
-            train_q_learning(episodes=500)
+            train_q_learning(episodes=1000)
         elif option == "2":
-            train_dqn(episodes=500)
+            train_dqn(episodes=200)
         elif option == "3":
-            train_ppo(episodes=500)     
+            train_ppo(episodes=100)     
         elif option == "4":
-            train_a2c(episodes=10)
+            train_a2c(episodes=20)
+            
         elif option == "0":
             print("|*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*|")
             print("|                                                                   |")

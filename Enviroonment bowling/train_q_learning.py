@@ -9,9 +9,9 @@ import os
 def moving_average(data, window=10):
     return np.convolve(data, np.ones(window) / window, mode="valid")
 
-def train_q_learning(episodes=500):
+def train_q_learning(episodes=1000):
     env = gym.make("ALE/Bowling-v5", render_mode="rgb_array")
-    obs_space = 1000  # simplificação via hash discretizado
+    obs_space = 2000  # simplificação via hash discretizado
     action_space = env.action_space.n
     agent = QLearningAgent(obs_space, action_space)
 
@@ -54,3 +54,7 @@ def train_q_learning(episodes=500):
     plt.tight_layout()
     plt.savefig("Graphics/reward_plot_Q_Learning.png")
     plt.show()
+    
+
+    os.makedirs("results", exist_ok=True)
+    np.save("results/rewards_q_learning.npy", rewards)
