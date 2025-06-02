@@ -1,0 +1,4 @@
+gymnasium[atari]
+ale-py
+numpy
+matplotlib
