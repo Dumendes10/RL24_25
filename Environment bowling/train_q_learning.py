@@ -9,7 +9,7 @@ import os
 def moving_average(data, window=10):
     return np.convolve(data, np.ones(window) / window, mode="valid")
 
-def train_q_learning(episodes=1000):
+def train_q_learning(episodes=150):
     env = gym.make("ALE/Bowling-v5", render_mode="rgb_array")
     obs_space = 2000  # simplificação via hash discretizado
     action_space = env.action_space.n
@@ -38,8 +38,11 @@ def train_q_learning(episodes=1000):
         rewards.append(total_reward)
         print(f"Episode {ep+1}: Total reward = {total_reward:.2f}")
 
-    # Criar diretório se não existir
+
     os.makedirs("Graphics", exist_ok=True)
+    os.makedirs("results", exist_ok=True)
+    np.save("results/rewards_q_learning.npy", rewards)  # ← mover antes
+
 
     # Gráfico da recompensa por episódio
     plt.figure(figsize=(10, 5))
@@ -53,8 +56,5 @@ def train_q_learning(episodes=1000):
     plt.grid(True)
     plt.tight_layout()
     plt.savefig("Graphics/reward_plot_Q_Learning.png")
-    plt.show()
-    
-
-    os.makedirs("results", exist_ok=True)
-    np.save("results/rewards_q_learning.npy", rewards)
+  #  plt.show()
+    plt.close() 

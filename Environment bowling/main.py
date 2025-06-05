@@ -2,6 +2,7 @@ from train_q_learning import train_q_learning
 from train_dqn import train_dqn
 from train_ppo import train_ppo
 from train_a2c import train_a2c
+from compare_algorithms import comparar_algoritmos
 import sys
 
 def main():
@@ -11,6 +12,7 @@ def main():
     print("|               2. DQN (Deep Q Network)                             |")
     print("|               3. PPO (Proximal Policy Optimization)               |")
     print("|               4. A2C (Advantage Actor-Critic)                     |")
+    print("|               5. Compare all algoritms                            |")
     print("|               0. exit                                             |")
     print("|*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*|")
     print("\n")
@@ -24,14 +26,16 @@ if __name__ == "__main__":
         option = main()
 
         if option == "1":
-            train_q_learning(episodes=1000)
+            train_q_learning(episodes=150)
         elif option == "2":
-            train_dqn(episodes=200)
+            train_dqn(episodes=150)
         elif option == "3":
             train_ppo(episodes=100)     
         elif option == "4":
             train_a2c(episodes=20)
-            
+        elif option == "5":
+            comparar_algoritmos()
+        
         elif option == "0":
             print("|*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*|")
             print("|                                                                   |")

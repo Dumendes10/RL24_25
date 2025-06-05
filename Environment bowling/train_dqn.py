@@ -14,14 +14,14 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def preprocess(obs):
     gray = cv2.cvtColor(obs, cv2.COLOR_RGB2GRAY)
-    resized = cv2.resize(gray, (84, 84))
+    resized = cv2.resize(gray, (64, 64))
     norm = resized / 255.0
     return np.expand_dims(norm, axis=0)  # (1, 84, 84)
 
 def moving_average(data, window=10):
     return np.convolve(data, np.ones(window) / window, mode="valid")
 
-def train_dqn(episodes=200, batch_size=64):
+def train_dqn(episodes=150, batch_size=64):
     env = gym.make("ALE/Bowling-v5", render_mode="rgb_array")
     obs, _ = env.reset()
     state = preprocess(obs)
@@ -33,14 +33,14 @@ def train_dqn(episodes=200, batch_size=64):
     target_net.load_state_dict(policy_net.state_dict())
     target_net.eval()
 
-    optimizer = optim.Adam(policy_net.parameters(), lr=1e-4)
+    optimizer = optim.Adam(policy_net.parameters(), lr=2e-4)
     buffer = ReplayBuffer(50000)
 
     gamma = 0.99
     epsilon = 1.0
     epsilon_min = 0.05
-    epsilon_decay = 0.995
-    sync_target_steps = 500
+    epsilon_decay = 0.990
+    sync_target_steps = 1000
     total_steps = 0
     rewards = []
 
@@ -97,7 +97,10 @@ def train_dqn(episodes=200, batch_size=64):
         rewards.append(total_reward)
         print(f"Episode {ep+1} - Total reward: {total_reward:.2f} - Epsilon: {epsilon:.3f}")
 
+    
     os.makedirs("Graphics", exist_ok=True)
+    os.makedirs("results", exist_ok=True)
+    np.save("results/rewards_dqn.npy", rewards)
 
     # Gráfico
     plt.figure(figsize=(10, 5))
@@ -111,8 +114,5 @@ def train_dqn(episodes=200, batch_size=64):
     plt.grid(True)
     plt.tight_layout()
     plt.savefig("Graphics/reward_plot_DQN.png")
-    plt.show()
-    
-        
-    os.makedirs("results", exist_ok=True)
-    np.save("results/rewards_dqn.npy", rewards)
+  #  plt.show()
+    plt.close()  
