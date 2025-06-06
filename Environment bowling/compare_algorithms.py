@@ -19,10 +19,11 @@ def comparar_algoritmos():
 
     # Gráfico de comparação
     plt.figure(figsize=(12, 6))
-    plt.plot(rewards_q, alpha=0.3, label="Q-Learning", color='blue')
-    plt.plot(rewards_dqn, alpha=0.3, label="DQN", color='orange')
-    plt.plot(rewards_ppo, alpha=0.3, label="PPO", color='green')
-    # plt.plot(rewards_a2c, alpha=0.3, label="A2C", color='red')
+
+    plt.plot(rewards_q, alpha=0.3, label="Q-Learning", color="#1f77b4")
+    plt.plot(rewards_dqn, alpha=0.3, label="DQN", color="#d62728")
+    plt.plot(rewards_ppo, alpha=0.3, label="PPO", color="#2ca02c")
+# plt.plot(rewards_a2c, alpha=0.3, label="A2C", color="#d62728")
 
     #plt.plot(moving_average(rewards_q), label="Q-Learning (Média)", linewidth=2)
     #plt.plot(moving_average(rewards_dqn), label="DQN (Média)", linewidth=2)
@@ -40,9 +41,9 @@ def comparar_algoritmos():
 
     # Histograma final
     plt.figure(figsize=(10, 5))
-    plt.hist(rewards_q[-50:], alpha=0.5, label="Q-Learning", color='blue')
-    plt.hist(rewards_dqn[-50:], alpha=0.5, label="DQN", color='orange')
-    plt.hist(rewards_ppo[-50:], alpha=0.5, label="PPO", color='green')
+    plt.hist(rewards_q[-50:], alpha=0.5, label="Q-Learning", color="#1f77b4")
+    plt.hist(rewards_dqn[-50:], alpha=0.5, label="DQN", color="#d62728")
+    plt.hist(rewards_ppo[-50:], alpha=0.5, label="PPO", color="#2ca02c")
     # plt.hist(rewards_a2c[-50:], alpha=0.5, label="A2C", color='red')
 
     plt.xlabel("Recompensa")

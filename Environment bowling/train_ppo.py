@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import os
 import numpy as np
 
-def train_ppo(episodes=100):
+def train_ppo(episodes=150):
     # Criar ambiente com monitor e wrappers
     env = gym.make("ALE/Bowling-v5", render_mode="rgb_array")
     env = Monitor(env)
@@ -34,7 +34,7 @@ def train_ppo(episodes=100):
     eval_env = VecTransposeImage(eval_env)
     eval_env = VecFrameStack(eval_env, n_stack=4)
     
-    for ep in range(10):
+    for ep in range(150):
         obs = eval_env.reset()
         done = False
         total_reward = 0

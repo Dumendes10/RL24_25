@@ -11,8 +11,7 @@ def main():
     print("|               1. Q-Learning                                       |")
     print("|               2. DQN (Deep Q Network)                             |")
     print("|               3. PPO (Proximal Policy Optimization)               |")
-    print("|               4. A2C (Advantage Actor-Critic)                     |")
-    print("|               5. Compare all algoritms                            |")
+    print("|               4. Compare all algoritms                            |")
     print("|               0. exit                                             |")
     print("|*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*|")
     print("\n")
@@ -30,10 +29,8 @@ if __name__ == "__main__":
         elif option == "2":
             train_dqn(episodes=150)
         elif option == "3":
-            train_ppo(episodes=100)     
+            train_ppo(episodes=150)   
         elif option == "4":
-            train_a2c(episodes=20)
-        elif option == "5":
             comparar_algoritmos()
         
         elif option == "0":
