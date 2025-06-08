@@ -1,0 +1,17 @@
+{
+    "td3": {
+        "success_rate": 0.1,
+        "params": {
+            "hidden_dim": 128,
+            "gamma": 0.9188427622092654,
+            "tau": 0.01,
+            "policy_noise": 0.18597096171850305,
+            "noise_clip": 0.48541168882865565,
+            "policy_freq": 1,
+            "exploration_noise": 0.0751074912253076,
+            "batch_size": 32,
+            "buffer_size": 100000,
+            "learning_starts": 1000
+        }
+    }
+}
